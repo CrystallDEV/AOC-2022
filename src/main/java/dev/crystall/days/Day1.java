@@ -1,7 +1,7 @@
-package dev.crystall;
+package dev.crystall.days;
 
+import dev.crystall.utils.FileUtils;
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -39,16 +39,14 @@ public class Day1 {
   }
 
   private List<Integer> calculateElfCalories() {
-    var inputFile = getClass().getClassLoader().getResource("input.txt").getFile();
     List<Integer> elfCalories = new ArrayList<>();
     String line;
     var currentElfCalories = 0;
 
-    try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
+    try (BufferedReader reader = FileUtils.readFileBuffered("input_day1.txt")) {
       while ((line = reader.readLine()) != null) {
         try {
-          int currentCalory = Integer.parseInt(line);
-          currentElfCalories += currentCalory;
+          currentElfCalories += Integer.parseInt(line);
         } catch (NumberFormatException ex) {
           elfCalories.add(currentElfCalories);
           currentElfCalories = 0;
