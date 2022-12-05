@@ -4,6 +4,7 @@ import dev.crystall.utils.FileUtils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,12 +42,7 @@ public class Day4 {
   }
 
   private boolean fullyContainsOtherElf(List<Integer> firstElfSections, List<Integer> secondElfSections) {
-    for (Integer integer : firstElfSections) {
-      if (!secondElfSections.contains(integer)) {
-        return false;
-      }
-    }
-    return true;
+    return new HashSet<>(firstElfSections).containsAll(secondElfSections);
   }
 
   private boolean partlyContainsOtherElf(List<Integer> firstElfSections, List<Integer> secondElfSections) {
